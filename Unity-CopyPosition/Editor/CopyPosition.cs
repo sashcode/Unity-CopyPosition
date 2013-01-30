@@ -20,6 +20,7 @@ public class CopyPosition : MonoBehaviour
 	static void Paste ()
 	{
 		foreach (Transform t in Selection.transforms) {	
+			Undo.RegisterUndo (t, t.name + " paste position");
 			t.position = copiedPosition;
 		}
 		Debug.Log (" paste " + copiedPosition);
@@ -30,6 +31,7 @@ public class CopyPosition : MonoBehaviour
 	{
 		Transform act = Selection.activeTransform;
 		foreach (Transform t in Selection.transforms) {	
+			Undo.RegisterUndo (t, act.name + " same position");
 			t.position = act.position;
 		}
 		Debug.Log (" move to " + act);
